@@ -39,6 +39,10 @@ public class UserService {
 			collectionRepository.save(collection);
 		}
 	}
+	
+	public User getUserByIdandPassword(String username, String password) {
+		return userRepository.findOneByusernameAndpassword(username, password);
+	}
 
 	public void renameCollectionTitle(String title, int userId, int collectionId) {
 		// TODO Auto-generated method stub
