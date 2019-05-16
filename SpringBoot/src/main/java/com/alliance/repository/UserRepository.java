@@ -14,6 +14,7 @@ import com.alliance.entity.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 	
 
+
 	public User findByusername(String username);
 	
 }

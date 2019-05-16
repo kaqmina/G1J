@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.alliance.entity.Card;
@@ -26,16 +27,23 @@ public class UserService {
 	@Autowired 
 	private CollectionRepository collectionRepository;
 	
+	//helper
+	public boolean validCollection (String name) {
+		return name.equalsIgnoreCase(collectionRepository.findByName(name)) ? true:false;
+	}
+	
 	public void saveCollection(int userId, String name) {
-		Collection collection = new Collection();
-		collection.setName(name);
-		collection.setUserId(userId);
-		collectionRepository.save(collection);
+		if(validCollection(name)) {
+			Collection collection = new Collection();
+			collection.setName(name);
+			collection.setUserId(userId);
+			collectionRepository.save(collection);
+		}
 	}
 	
 	public User getUserByIdandPassword(String username) {
 		return userRepository.findByusername(username);
-	}
+
 
 	public void renameCollectionTitle(String title, int userId, int collectionId) {
 		// TODO Auto-generated method stub
@@ -53,6 +61,12 @@ public class UserService {
 		card.setDesc(desc);
 		card.setCollectionId(collectionId);
 		cardRepository.save(card);
+	}
+
+	@Query("UPDATE Card c SET c.desc = ?2 WHERE c.cardId = ?1")
+	public void saveCardDesc(int id, String desc) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
