@@ -40,12 +40,17 @@ public class UserController {
 	}
 	
 	
-//	@RequestMapping(method = RequestMethod.GET, value = "/{username}/{password}")
-//	public User Login(@PathVariable(name = "username") String username,@PathVariable(name = "password") String password) {
-//		//userService.saveCollection(userId,name);
-//		return userService.getUserByIdandPassword(username,password);
-//		
-//		}
+	@RequestMapping(method = RequestMethod.GET, value = "/{username}/{password}")
+	public int Login(@PathVariable(name = "username") String username,@PathVariable(name = "password") String password) {
+		//return userService.getUserByIdandPassword(username,password);
+		User user= new User();
+		user=userService.getUserByIdandPassword(username,password);
+		if(user!=null) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 	
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{cardId}")
@@ -60,10 +65,6 @@ public class UserController {
 
 	}
 	
-//	@RequestMapping(method = RequestMethod.GET, path = "checkIfUserExists")
-//	public User Login(@RequestParam String username, @RequestParam String password) {
-//		//userService.saveCollection(userId,name);
-//		return userService.getUserByIdandPassword(username,password);
-//	}
+
 
 }

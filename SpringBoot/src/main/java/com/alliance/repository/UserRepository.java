@@ -12,11 +12,8 @@ import com.alliance.entity.User;
 @Repository("userRepository")
 @Transactional
 public interface UserRepository extends JpaRepository<User, Integer>{
-	
 
 
-	public User findByusernameAndpassword(String username,String password);
-
-	
+	public User findByUsernameAndPassword(String username,String password);
 	
 }
