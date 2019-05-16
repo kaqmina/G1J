@@ -60,6 +60,13 @@ public class UserController {
 
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, path = "deleteCard")
+	public void deleteCard(@RequestParam String delete, @RequestParam int cardId, @RequestParam int collectionId) {
+		if(!delete.isEmpty()) {
+			userService.setCardByIsArchived(0, cardId, collectionId);
+		}
+	}
+	
 //	@RequestMapping(method = RequestMethod.GET, path = "checkIfUserExists")
 //	public User Login(@RequestParam String username, @RequestParam String password) {
 //		//userService.saveCollection(userId,name);

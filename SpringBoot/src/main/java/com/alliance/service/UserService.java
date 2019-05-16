@@ -74,6 +74,15 @@ public class UserService {
 		
 	}
 
+	public void setCardByIsArchived(int i, int cardId, int collectionId) {
+		// TODO Auto-generated method stub
+		Card card = new Card();
+		card.setId(cardId);
+		card.setCollectionId(collectionId);
+		card.setIsArchived(i);
+		cardRepository.save(card);
+	}
+
 	
 
 	
