@@ -41,7 +41,6 @@ public class UserController {
 		userService.addCardToCollection(collectionId, heading, desc);
 	}
 	
-	
 	@RequestMapping(method = RequestMethod.GET, value = "/{username}/{password}")
 	public int Login(@PathVariable(name = "username") String username,@PathVariable(name = "password") String password) {
 		//return userService.getUserByIdandPassword(username,password);
@@ -62,21 +61,16 @@ public class UserController {
 //		}
 
 	@RequestMapping(method = RequestMethod.POST, path = "editCardDesc")
-	public void editCardDesc(@RequestParam int id, @RequestParam String desc) {
-
-		//userService.saveCardDesc(id, desc);
+	public void editCardDesc(@RequestParam int cardId, @RequestParam int collectionId, @RequestParam String desc) {
+		userService.editCardDesc(cardId, collectionId, desc);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "viewAllCardsByCollectionId")
 	public List<Card> viewAllCardsByCollectionId(@RequestParam int collectionId) {
 		List<Card> cards = userService.viewAllCardsByCollectionId(collectionId);
 		return cards;
-
-		//userService.saveCardDesc(id, desc);
-
 	}
 	
-
 	@RequestMapping(method = RequestMethod.GET, path = "deleteCard")
 	public void deleteCard(@RequestParam String delete, @RequestParam int cardId, @RequestParam int collectionId) {
 		if(!delete.isEmpty()) {
@@ -84,11 +78,10 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, path = "renameCollectionTitle")
-	public void editCardHeading(@RequestParam String heading, @RequestParam int cardId, @RequestParam int collectionId) {
-		userService.editCardHeading(heading, cardId, collectionId);
-
-	}
+//	@RequestMapping(method = RequestMethod.POST, path = "renameCardHeading")
+//	public void editCardHeading(@RequestParam String heading, @RequestParam int cardId, @RequestParam int collectionId) {
+//		userService.editCardHeading(heading, cardId, collectionId);
+//	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "viewSingleCardByCardId")
 	public Card viewSingleCardByCardId(@RequestParam int cardId) {
@@ -96,12 +89,28 @@ public class UserController {
 		return card;
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, path="deleteCollection")
+	public void deleteCollection(@RequestParam String delete, @RequestParam int userId, @RequestParam int collectionId) {
+		if(!delete.isEmpty()) {
+			userService.setCollectionByIsArchived(0, userId, collectionId);
+		}
+	}
 	
-//	@RequestMapping(method = RequestMethod.GET, path = "checkIfUserExists")
-//	public User Login(@RequestParam String username, @RequestParam String password) {
-//		//userService.saveCollection(userId,name);
-//		return userService.getUserByIdandPassword(username,password);
-//	}
-
+	@RequestMapping(method = RequestMethod.POST, path="viewCollectionByUserId")
+	public List<Collection> viewCollectionByUserId(@RequestParam int userId) {
+		List<Collection> collection = userService.viewAllCollectionByUserId(userId);
+		return collection;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path="register")
+	public void addUser(@RequestParam String username, @RequestParam String password) {
+		boolean success = false;
+		if (!username.isEmpty() && !password.isEmpty()) {
+			userService.saveUser(username, password);
+			success = true;
+		} else {
+			System.out.println("User already exists.");
+		}
+	}
 
 }

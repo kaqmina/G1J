@@ -11,15 +11,23 @@ import javax.persistence.Table;
 public class Card {
 	
 	@Id
+	@Column(name = "cardId")
 	private int cardId;
+
+	@Column(name = "heading")
 	private String heading;
+
+	@Column(name = "desc")
 	private String desc;	// description
+
+	@Column(name = "collectionId")
 	private int collectionId;
+	
+	@Column(name = "isArchived")
 	private int isArchived;
 	
 	public Card() {}
 	
-	@Column(name = "isArchived")
 	public int getIsArchived() {
 		return this.isArchived;
 	}
@@ -28,7 +36,6 @@ public class Card {
 		this.isArchived = isArchived;
 	}
 	
-	@Column(name = "cardId")
 	public int getId() {
 		return this.cardId;
 	}
@@ -37,7 +44,6 @@ public class Card {
 		this.cardId = cardId;
 	}
 	
-	@Column(name = "heading")
 	public String getHeading() {
 		return this.heading;
 	}
@@ -46,7 +52,6 @@ public class Card {
 		this.heading = heading;
 	}
 	
-	@Column(name = "desc")
 	public String getDesc() {
 		return this.desc;
 	}
@@ -55,7 +60,6 @@ public class Card {
 		this.desc = desc;
 	}
 	
-	@Column(name = "collectionId")
 	public int getCollectionId() {
 		return this.collectionId;
 	}

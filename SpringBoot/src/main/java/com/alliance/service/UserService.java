@@ -33,6 +33,10 @@ public class UserService {
 		return name.equalsIgnoreCase(collectionRepository.findByName(name)) ? true:false;
 	}
 	
+	public boolean validUsername (String username) {
+		return username.equalsIgnoreCase(userRepository.findByUsername(username)) ? true:false;
+	}
+	
 	public void saveCollection(int userId, String name) {
 		if(validCollection(name)) {
 			Collection collection = new Collection();
@@ -49,7 +53,6 @@ public class UserService {
 //	public Card viewCardById(int cardId) {
 //		return cardRepository.findOneByCardId(cardId);
 //	}
-	
 	
 	public void renameCollectionTitle(String title, int userId, int collectionId) {
 		// TODO Auto-generated method stub
@@ -82,8 +85,6 @@ public class UserService {
 		return card;
 	}
 
-
-
 	public void setCardByIsArchived(int i, int cardId, int collectionId) {
 		// TODO Auto-generated method stub
 		Card card = new Card();
@@ -102,8 +103,43 @@ public class UserService {
 		cardRepository.save(card);
 	}
 
-	
+	// Still SQL Syntax Error
+	public void editCardDesc(int cardId, int collectionId, String desc) {
+		// TODO Auto-generated method stub
+		Card card = new Card();
+		card.setId(cardId);
+		card.setCollectionId(collectionId);
+		card.setDesc(desc);
+		cardRepository.save(card);
+	}
 
-	
+	// Same error - might be a problem with my eclipse itself.
+	public void setCollectionByIsArchived(int i, int userId, int collectionId) {
+		// TODO Auto-generated method stub
+		Collection collection = new Collection();
+		collection.setId(collectionId);
+		collection.setUserId(userId);
+		collection.setIsArchived(i);
+		collectionRepository.save(collection);
+	}
 
+	public List<Collection> viewAllCollectionByUserId(int userId) {
+		// TODO Auto-generated method stub
+		List<Collection> collection = collectionRepository.findAllByUserId(userId);
+		return collection;
+	}
+
+	public boolean saveUser(String username, String password) {
+		// TODO Auto-generated method stub
+		boolean success = false;
+		if(validUsername(username)) {
+			User user = new User();
+			user.setUsername(username);
+			user.setPassword(password);
+			userRepository.save(user);
+			success = true;
+		}
+		return success;
+	}
+	
 }
