@@ -42,10 +42,15 @@ public class UserService {
 		}
 	}
 	
-	public User getUserByIdandPassword(String username, String password) {
-		return userRepository.findOneByUsernameAndPassword(username, password);
+	public User getUserByIdandPassword(String username,String password) {
+		return userRepository.findByusernameAndpassword(username,password);
 	}
 
+	public Card viewCardById(int cardId) {
+		return cardRepository.findOneBycardId(cardId);
+	}
+	
+	
 	public void renameCollectionTitle(String title, int userId, int collectionId) {
 		// TODO Auto-generated method stub
 		Collection collection = new Collection();
@@ -70,6 +75,7 @@ public class UserService {
 		return cards;
 	}
 
+<<<<<<< HEAD
 	public Card viewSingleCardByCardId(int cardId) {
 		// TODO Auto-generated method stub
 		Card card = cardRepository.findOneByCardId(cardId);
@@ -77,4 +83,28 @@ public class UserService {
 	}
 
 
+=======
+	public void setCardByIsArchived(int i, int cardId, int collectionId) {
+		// TODO Auto-generated method stub
+		Card card = new Card();
+		card.setId(cardId);
+		card.setCollectionId(collectionId);
+		card.setIsArchived(i);
+		cardRepository.save(card);
+	}
+	
+	public void editCardHeading(String heading, int cardId, int collectionId) {
+		// TODO Auto-generated method stub
+		Card card = new Card();
+		card.setId(cardId);
+		card.setHeading(heading);
+		card.setCollectionId(collectionId);
+		cardRepository.save(card);
+	}
+
+	
+
+	
+	
+>>>>>>> 7efc04b7fb4464472fa3c8a0b75c19f9fb6157db
 }

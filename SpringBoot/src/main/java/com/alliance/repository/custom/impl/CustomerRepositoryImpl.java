@@ -30,7 +30,7 @@ public class CustomerRepositoryImpl extends GenericRepositoryImpl implements Cus
 			sqlQuery.append(" WHERE customer.city LIKE :city ");
 			appended = true;
 		}
-
+ 
 		if (!StringUtility.isStringNullOrEmpty(searchFilter.getContact())) {
 			if (appended)
 				sqlQuery.append(" AND ");

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.alliance.entity.Card;
 import com.alliance.entity.Collection;
+import com.alliance.entity.User;
 
 @Repository("cardRepository")
 @Transactional
@@ -16,8 +17,12 @@ public interface CardRepository extends JpaRepository<Card, Integer>{
 	
 	//@SuppressWarnings("unchecked")
 	public Card save(Card card);
+<<<<<<< HEAD
 
 	public List<Card> findAllByCollectionId(int collectionId);
 
 	public Card findOneByCardId(int cardId);
+=======
+	public Card findOneBycardId(int cardId);
+>>>>>>> 7efc04b7fb4464472fa3c8a0b75c19f9fb6157db
 }
