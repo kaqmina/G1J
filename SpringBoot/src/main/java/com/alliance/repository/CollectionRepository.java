@@ -12,5 +12,7 @@ import com.alliance.entity.Collection;
 public interface CollectionRepository extends JpaRepository<Collection, Integer>{
 	
 	public Collection save(Collection collection);
+	//public int findOneById(Integer collectionId);
+	public String findByName(String name);
 
-}
+}	

@@ -26,11 +26,18 @@ public class UserService {
 	@Autowired 
 	private CollectionRepository collectionRepository;
 	
+	//helper
+	public boolean validCollection (String name) {
+		return name.equalsIgnoreCase(collectionRepository.findByName(name)) ? true:false;
+	}
+	
 	public void saveCollection(int userId, String name) {
-		Collection collection = new Collection();
-		collection.setName(name);
-		collection.setUserId(userId);
-		collectionRepository.save(collection);
+		if(validCollection(name)) {
+			Collection collection = new Collection();
+			collection.setName(name);
+			collection.setUserId(userId);
+			collectionRepository.save(collection);
+		}
 	}
 
 	public void renameCollectionTitle(String title, int userId, int collectionId) {
