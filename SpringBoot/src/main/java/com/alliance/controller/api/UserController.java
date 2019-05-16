@@ -31,5 +31,10 @@ public class UserController {
 	public void addCard(@RequestParam String heading, @RequestParam String desc, @RequestParam int collectionId) {
 		userService.saveCard(heading, desc, collectionId);
 	}*/
+	
+	@RequestMapping(method = RequestMethod.POST, path = "updateCardDesc")
+	public void updateCardDesc(@RequestParam(name="cardId") int cardId, @RequestParam String desc) {
+		userService.updateCardDesc(cardId, desc);
+	}
 
 }

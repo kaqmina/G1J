@@ -26,6 +26,14 @@ public class UserService {
 		userRepository.save(collection);
 	}
 
+	public void updateCardDesc(int cardId, String desc) {
+		// TODO Auto-generated method stub
+		Card card = new Card();
+		card.setDesc(desc);
+		card.setId(cardId);
+		userRepository.saveCard(card);
+	}
+
 /*	public void saveCard(String heading, String desc, int collectionId) {
 		// TODO Auto-generated method stub
 		Card card = new Card();
