@@ -25,6 +25,10 @@ public class UserService {
 		collection.setUserId(userId);
 		userRepository.save(collection);
 	}
+	
+	public User getUserByIdandPassword(String username, String password) {
+		return userRepository.findOneByusernameAndpassword(username, password);
+	}
 
 /*	public void saveCard(String heading, String desc, int collectionId) {
 		// TODO Auto-generated method stub
