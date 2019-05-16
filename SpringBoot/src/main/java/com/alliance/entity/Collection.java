@@ -1,6 +1,7 @@
 package com.alliance.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,9 +21,20 @@ public class Collection {
 	private int collectionId;
 	private String name;
 	private int userId;
+	private int isArchived;
 	
+	@Column(name = "collectionId")
 	public int getId() {
 		return this.collectionId;
+	}
+	
+	@Column(name = "isArchived")
+	public int getIsArchived() {
+		return this.isArchived;
+	}
+	
+	public void setIsArchived(int isArchived) {
+		this.isArchived = isArchived;
 	}
 	
 	public Collection() {}
