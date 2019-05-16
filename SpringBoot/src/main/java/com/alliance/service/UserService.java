@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.alliance.entity.Card;
@@ -41,7 +42,7 @@ public class UserService {
 	}
 	
 	public User getUserByIdandPassword(String username, String password) {
-		return userRepository.findOneByusernameAndpassword(username, password);
+		return userRepository.findOneByUsernameAndPassword(username, password);
 	}
 
 	public void renameCollectionTitle(String title, int userId, int collectionId) {
@@ -60,6 +61,12 @@ public class UserService {
 		card.setDesc(desc);
 		card.setCollectionId(collectionId);
 		cardRepository.save(card);
+	}
+
+	@Query("UPDATE Card c SET c.desc = ?2 WHERE c.cardId = ?1")
+	public void saveCardDesc(int id, String desc) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

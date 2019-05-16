@@ -20,12 +20,10 @@ import javax.persistence.Table;
 public class Card {
 	
 	@Id
-	@GeneratedValue
 	private int cardId;
 	private String heading;
 	private String desc;	// description
 	
-	@ManyToOne
 	private int collectionId;
 	private int isArchived;
 	

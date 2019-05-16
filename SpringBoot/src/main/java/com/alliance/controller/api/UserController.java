@@ -37,10 +37,15 @@ public class UserController {
 		userService.saveCard(heading, desc, collectionId);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path = "checkIfUserExists")
-	public User Login(@RequestParam String username, @RequestParam String password) {
-		//userService.saveCollection(userId,name);
-		return userService.getUserByIdandPassword(username,password);
+	@RequestMapping(method = RequestMethod.POST, path = "editCardDesc")
+	public void editCardDesc(@RequestParam int id, @RequestParam String desc) {
+		userService.saveCardDesc(id, desc);
 	}
+	
+//	@RequestMapping(method = RequestMethod.GET, path = "checkIfUserExists")
+//	public User Login(@RequestParam String username, @RequestParam String password) {
+//		//userService.saveCollection(userId,name);
+//		return userService.getUserByIdandPassword(username,password);
+//	}
 
 }
