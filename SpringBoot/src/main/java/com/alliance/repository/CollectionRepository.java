@@ -5,11 +5,12 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.alliance.entity.User;
+import com.alliance.entity.Collection;
 
-@Repository("userRepository")
+@Repository("collectionRepository")
 @Transactional
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface CollectionRepository extends JpaRepository<Collection, Integer>{
 	
-	
+	public Collection save(Collection collection);
+
 }

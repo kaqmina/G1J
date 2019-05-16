@@ -3,6 +3,7 @@ package com.alliance.entity;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,12 +19,24 @@ public class Card {
 	
 	@Id
 	private int cardId;
+	
 	private String heading;
 	private String desc;	// description
 	private int collectionId;
+	private int isArchived;
 	
 	public Card() {}
 	
+	@Column(name = "isArchived")
+	public int getIsArchived() {
+		return this.isArchived;
+	}
+	
+	public void setIsArchived(int isArchived) {
+		this.isArchived = isArchived;
+	}
+	
+	@Column(name = "cardId")
 	public int getId() {
 		return this.cardId;
 	}
@@ -32,6 +45,7 @@ public class Card {
 		this.cardId = cardId;
 	}
 	
+	@Column(name = "heading")
 	public String getHeading() {
 		return this.heading;
 	}
@@ -40,6 +54,7 @@ public class Card {
 		this.heading = heading;
 	}
 	
+	@Column(name = "desc")
 	public String getDesc() {
 		return this.desc;
 	}
@@ -48,6 +63,7 @@ public class Card {
 		this.desc = desc;
 	}
 	
+	@Column(name = "collectionId")
 	public int getCollectionId() {
 		return this.collectionId;
 	}

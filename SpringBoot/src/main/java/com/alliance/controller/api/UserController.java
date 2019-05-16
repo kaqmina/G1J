@@ -27,9 +27,14 @@ public class UserController {
 		userService.saveCollection(userId,name);
 	}
 	
-/*	@RequestMapping(method = RequestMethod.POST, path = "addCard")
+	@RequestMapping(method = RequestMethod.POST, path = "renameCollectionTitle")
+	public void renameCollectionTitle(@RequestParam String title, @RequestParam int userId, @RequestParam int collectionId) {
+		userService.renameCollectionTitle(title,userId,collectionId);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "addCard")
 	public void addCard(@RequestParam String heading, @RequestParam String desc, @RequestParam int collectionId) {
 		userService.saveCard(heading, desc, collectionId);
-	}*/
+	}
 
 }

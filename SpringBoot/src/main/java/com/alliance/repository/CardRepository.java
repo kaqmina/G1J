@@ -11,5 +11,7 @@ import com.alliance.entity.Collection;
 @Repository("cardRepository")
 @Transactional
 public interface CardRepository extends JpaRepository<Card, Integer>{
+	
+
 	public Card save(Card card);
 }
