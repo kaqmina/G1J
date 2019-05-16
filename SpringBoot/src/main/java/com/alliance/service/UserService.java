@@ -33,8 +33,8 @@ public class UserService {
 		collectionRepository.save(collection);
 	}
 	
-	public User getUserByIdandPassword(String username, String password) {
-		return userRepository.findOneByusernameAndpassword(username, password);
+	public User getUserByIdandPassword(String username) {
+		return userRepository.findByusername(username);
 	}
 
 	public void renameCollectionTitle(String title, int userId, int collectionId) {

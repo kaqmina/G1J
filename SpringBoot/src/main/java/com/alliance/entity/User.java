@@ -3,6 +3,7 @@ package com.alliance.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
@@ -18,7 +19,7 @@ public class User {
 	private String username;
 	private String password;
 	
-	
+	@Column(name = "userId", nullable = false)
 	public int getId() {
 		return this.userId;
 	}
@@ -27,10 +28,13 @@ public class User {
 		this.userId = userId;
 	}
 	
+	
+	@Column(name = "username", nullable = false)
 	public String getUsername() {
 		return this.username;
 	}
 	
+	@Column(name = "password", nullable = false)
 	public String getPassword() {
 		return this.password;
 	}

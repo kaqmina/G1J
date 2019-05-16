@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,10 +38,10 @@ public class UserController {
 		userService.saveCard(heading, desc, collectionId);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path = "checkIfUserExists")
-	public User Login(@RequestParam String username, @RequestParam String password) {
+	@RequestMapping(method = RequestMethod.GET, value = "/{username}")
+	public User Login(@PathVariable(name = "username") String username) {
 		//userService.saveCollection(userId,name);
-		return userService.getUserByIdandPassword(username,password);
+		return userService.getUserByIdandPassword(username);
 	}
 	
 
