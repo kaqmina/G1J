@@ -41,10 +41,15 @@ public class UserService {
 		}
 	}
 	
-	public User getUserByIdandPassword(String username) {
-		return userRepository.findByusername(username);
+	public User getUserByIdandPassword(String username,String password) {
+		return userRepository.findByusernameAndpassword(username,password);
+	}
 
-
+	public Card viewCardById(int cardId) {
+		return cardRepository.findOneBycardId(cardId);
+	}
+	
+	
 	public void renameCollectionTitle(String title, int userId, int collectionId) {
 		// TODO Auto-generated method stub
 		Collection collection = new Collection();
@@ -68,6 +73,9 @@ public class UserService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
+
 	
 	
 }

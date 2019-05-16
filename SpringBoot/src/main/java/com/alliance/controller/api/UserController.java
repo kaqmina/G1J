@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alliance.entity.Card;
 import com.alliance.entity.Collection;
 import com.alliance.entity.User;
 import com.alliance.model.CustomerSearchFilter;
@@ -39,10 +40,18 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/{username}")
-	public User Login(@PathVariable(name = "username") String username) {
+//	@RequestMapping(method = RequestMethod.GET, value = "/{username}/{password}")
+//	public User Login(@PathVariable(name = "username") String username,@PathVariable(name = "password") String password) {
+//		//userService.saveCollection(userId,name);
+//		return userService.getUserByIdandPassword(username,password);
+//		
+//		}
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{cardId}")
+	public Card viewCard(@PathVariable(name = "cardId") int cardId) {
 		//userService.saveCollection(userId,name);
-		return userService.getUserByIdandPassword(username);
+			return userService.viewCardById(cardId);
 		}
 
 	@RequestMapping(method = RequestMethod.POST, path = "editCardDesc")
