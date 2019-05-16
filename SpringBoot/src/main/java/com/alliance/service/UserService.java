@@ -1,10 +1,11 @@
 package com.alliance.service;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.alliance.entity.Card;
@@ -45,9 +46,9 @@ public class UserService {
 		return userRepository.findByUsernameAndPassword(username,password);
 	}
 
-	public Card viewCardById(int cardId) {
-		return cardRepository.findOneBycardId(cardId);
-	}
+//	public Card viewCardById(int cardId) {
+//		return cardRepository.findOneByCardId(cardId);
+//	}
 	
 	
 	public void renameCollectionTitle(String title, int userId, int collectionId) {
@@ -59,7 +60,7 @@ public class UserService {
 		collectionRepository.save(collection);
 	}
 
-	public void saveCard(String heading, String desc, int collectionId) {
+	public void addCardToCollection(int collectionId, String heading, String desc) {
 		// TODO Auto-generated method stub
 		Card card = new Card();
 		card.setHeading(heading);
@@ -68,14 +69,41 @@ public class UserService {
 		cardRepository.save(card);
 	}
 
-	@Query("UPDATE Card c SET c.desc = ?2 WHERE c.cardId = ?1")
-	public void saveCardDesc(int id, String desc) {
+	public List<Card> viewAllCardsByCollectionId(int collectionId) {
 		// TODO Auto-generated method stub
-		
+		List<Card> cards = cardRepository.findAllByCollectionId(collectionId);
+		return cards;
+	}
+
+
+	public Card viewSingleCardByCardId(int cardId) {
+		// TODO Auto-generated method stub
+		Card card = cardRepository.findOneByCardId(cardId);
+		return card;
+	}
+
+
+
+	public void setCardByIsArchived(int i, int cardId, int collectionId) {
+		// TODO Auto-generated method stub
+		Card card = new Card();
+		card.setId(cardId);
+		card.setCollectionId(collectionId);
+		card.setIsArchived(i);
+		cardRepository.save(card);
+	}
+	
+	public void editCardHeading(String heading, int cardId, int collectionId) {
+		// TODO Auto-generated method stub
+		Card card = new Card();
+		card.setId(cardId);
+		card.setHeading(heading);
+		card.setCollectionId(collectionId);
+		cardRepository.save(card);
 	}
 
 	
 
 	
-	
+
 }
