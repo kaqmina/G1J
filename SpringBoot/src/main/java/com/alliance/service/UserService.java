@@ -1,10 +1,11 @@
 package com.alliance.service;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.alliance.entity.Card;
@@ -54,7 +55,7 @@ public class UserService {
 		collectionRepository.save(collection);
 	}
 
-	public void saveCard(String heading, String desc, int collectionId) {
+	public void addCardToCollection(int collectionId, String heading, String desc) {
 		// TODO Auto-generated method stub
 		Card card = new Card();
 		card.setHeading(heading);
@@ -63,11 +64,17 @@ public class UserService {
 		cardRepository.save(card);
 	}
 
-	@Query("UPDATE Card c SET c.desc = ?2 WHERE c.cardId = ?1")
-	public void saveCardDesc(int id, String desc) {
+	public List<Card> viewAllCardsByCollectionId(int collectionId) {
 		// TODO Auto-generated method stub
-		
+		List<Card> cards = cardRepository.findAllByCollectionId(collectionId);
+		return cards;
 	}
-	
-	
+
+	public Card viewSingleCardByCardId(int cardId) {
+		// TODO Auto-generated method stub
+		Card card = cardRepository.findOneByCardId(cardId);
+		return card;
+	}
+
+
 }
