@@ -67,6 +67,11 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, path = "renameCollectionTitle")
+	public void editCardHeading(@RequestParam String heading, @RequestParam int cardId, @RequestParam int collectionId) {
+		userService.editCardHeading(heading, cardId, collectionId);
+	}
+	
 //	@RequestMapping(method = RequestMethod.GET, path = "checkIfUserExists")
 //	public User Login(@RequestParam String username, @RequestParam String password) {
 //		//userService.saveCollection(userId,name);

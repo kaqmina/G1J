@@ -82,6 +82,15 @@ public class UserService {
 		card.setIsArchived(i);
 		cardRepository.save(card);
 	}
+	
+	public void editCardHeading(String heading, int cardId, int collectionId) {
+		// TODO Auto-generated method stub
+		Card card = new Card();
+		card.setId(cardId);
+		card.setHeading(heading);
+		card.setCollectionId(collectionId);
+		cardRepository.save(card);
+	}
 
 	
 
