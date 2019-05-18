@@ -95,8 +95,8 @@ public class UserController {
 		userService.setCollectionIsArchived(1, userId, collectionId);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, path="viewCollectionByUserId")
-	public List<Collection> viewCollectionByUserId(@RequestParam int userId) {
+	@RequestMapping(method = RequestMethod.POST, path="viewAllCollectionByUserId")
+	public List<Collection> viewAllCollectionByUserId(@RequestParam int userId) {
 		List<Collection> collection = userService.viewAllCollectionByUserId(userId);
 		return collection;
 	}
