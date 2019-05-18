@@ -25,6 +25,8 @@ public interface CardRepository extends JpaRepository<Card, Integer>{
 
 	public Card findOneByCardId(int cardId);
 
+	public Card findByCardIdAndCollectionId(int cardId, int collectionId);
+
 	//public Card findOneBycardId(int cardId);
 
 }

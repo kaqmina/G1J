@@ -17,7 +17,7 @@ public class Card {
 	@Column(name = "heading")
 	private String heading;
 
-	@Column(name = "desc")
+	@Column(name = "description")
 	private String desc;	// description
 
 	@Column(name = "collectionId")

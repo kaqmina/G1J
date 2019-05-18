@@ -15,11 +15,15 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
+	@Column(name = "userId", nullable = false)
 	private int userId;
+	
+	@Column(name = "username", nullable = false)
 	private String username;
+
+	@Column(name = "password", nullable = false)
 	private String password;
 	
-	@Column(name = "userId", nullable = false)
 	public int getId() {
 		return this.userId;
 	}
@@ -28,13 +32,10 @@ public class User {
 		this.userId = userId;
 	}
 	
-	
-	@Column(name = "username", nullable = false)
 	public String getUsername() {
 		return this.username;
 	}
 	
-	@Column(name = "password", nullable = false)
 	public String getPassword() {
 		return this.password;
 	}

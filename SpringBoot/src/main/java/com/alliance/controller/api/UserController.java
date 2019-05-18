@@ -60,6 +60,7 @@ public class UserController {
 //			return userService.viewCardById(cardId);
 //		}
 
+	// in progress: error is SQL Syntax
 	@RequestMapping(method = RequestMethod.POST, path = "editCardDesc")
 	public void editCardDesc(@RequestParam int cardId, @RequestParam int collectionId, @RequestParam String desc) {
 		userService.editCardDesc(cardId, collectionId, desc);
@@ -89,11 +90,9 @@ public class UserController {
 		return card;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path="deleteCollection")
-	public void deleteCollection(@RequestParam String delete, @RequestParam int userId, @RequestParam int collectionId) {
-		if(!delete.isEmpty()) {
-			userService.setCollectionByIsArchived(0, userId, collectionId);
-		}
+	@RequestMapping(method = RequestMethod.POST, path="deleteCollection")
+	public void deleteCollection(@RequestParam int userId, @RequestParam int collectionId) {
+		userService.setCollectionIsArchived(1, userId, collectionId);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, path="viewCollectionByUserId")
@@ -104,12 +103,10 @@ public class UserController {
 	
 	@RequestMapping(method = RequestMethod.POST, path="register")
 	public void addUser(@RequestParam String username, @RequestParam String password) {
-		boolean success = false;
 		if (!username.isEmpty() && !password.isEmpty()) {
 			userService.saveUser(username, password);
-			success = true;
 		} else {
-			System.out.println("User already exists.");
+			System.out.println("Please enter required fields.");
 		}
 	}
 

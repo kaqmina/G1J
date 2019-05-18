@@ -17,5 +17,7 @@ public interface CollectionRepository extends JpaRepository<Collection, Integer>
 	//public int findOneById(Integer collectionId);
 	public String findByName(String name);
 	public List<Collection> findAllByUserId(int userId);
+	
+	public Collection findByCollectionIdAndUserId(int collectionId, int userId);
 
 }

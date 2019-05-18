@@ -11,32 +11,29 @@ import javax.persistence.Table;
 public class Collection {
 	
 	@Id
+	@Column(name = "collectionId")
 	private int collectionId;
+
+	@Column(name = "name")
 	private String name;
+
+	@Column(name = "userId")
 	private int userId;
+	
+	@Column(name = "isArchived")
 	private int isArchived;
 	
-	@Column(name = "collectionId")
+
+	public Collection() {}
+	
 	public int getId() {
 		return this.collectionId;
 	}
 	
-	@Column(name = "isArchived")
-	public int getIsArchived() {
-		return this.isArchived;
+	public void setId(int collectionId) {
+		this.collectionId = collectionId;
 	}
 	
-	public void setIsArchived(int isArchived) {
-		this.isArchived = isArchived;
-	}
-	
-	public Collection() {}
-	
-	public void setId(int cardId) {
-		this.collectionId = cardId;
-	}
-	
-	@Column(name = "name")
 	public String getName() {
 		return this.name;
 	}
@@ -45,12 +42,19 @@ public class Collection {
 		this.name = name;
 	}
 	
-	@Column(name = "user")
 	public int getUserId() {
 		return this.userId;
 	}
 	
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	
+	public int getIsArchived() {
+		return this.isArchived;
+	}
+	
+	public void setIsArchived(int isArchived) {
+		this.isArchived = isArchived;
 	}
 }

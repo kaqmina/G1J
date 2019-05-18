@@ -34,7 +34,9 @@ public class UserService {
 	}
 	
 	public boolean validUsername (String username) {
-		return username.equalsIgnoreCase(userRepository.findByUsername(username)) ? true:false;
+		// If user exists, return false else return true
+		boolean isExists = userRepository.findByUsername(username) != null ? false:true;
+		return isExists;
 	}
 	
 	public void saveCollection(int userId, String name) {
@@ -103,24 +105,18 @@ public class UserService {
 		cardRepository.save(card);
 	}
 
-	// Still SQL Syntax Error
 	public void editCardDesc(int cardId, int collectionId, String desc) {
 		// TODO Auto-generated method stub
-		Card card = new Card();
-		card.setId(cardId);
-		card.setCollectionId(collectionId);
+		Card card = cardRepository.findByCardIdAndCollectionId(cardId, collectionId);
 		card.setDesc(desc);
-		cardRepository.save(card);
+		cardRepository.saveAndFlush(card);
 	}
 
-	// Same error - might be a problem with my eclipse itself.
-	public void setCollectionByIsArchived(int i, int userId, int collectionId) {
+	public void setCollectionIsArchived(int i, int userId, int collectionId) {
 		// TODO Auto-generated method stub
-		Collection collection = new Collection();
-		collection.setId(collectionId);
-		collection.setUserId(userId);
+		Collection collection = collectionRepository.findByCollectionIdAndUserId(collectionId, userId);
 		collection.setIsArchived(i);
-		collectionRepository.save(collection);
+		collectionRepository.saveAndFlush(collection);
 	}
 
 	public List<Collection> viewAllCollectionByUserId(int userId) {
