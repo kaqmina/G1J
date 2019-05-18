@@ -95,9 +95,10 @@ public class UserController {
 		userService.setCollectionIsArchived(1, userId, collectionId);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, path="viewAllCollectionByUserId")
-	public List<Collection> viewAllCollectionByUserId(@RequestParam int userId) {
-		List<Collection> collection = userService.viewAllCollectionByUserId(userId);
+	// all collections of the user specified
+	@RequestMapping(method = RequestMethod.POST, path="viewAllCollectionsByUserId")
+	public List<Collection> viewAllCollectionsByUserId(@RequestParam int userId) {
+		List<Collection> collection = userService.viewAllCollectionsByUserId(userId);
 		return collection;
 	}
 	
@@ -108,6 +109,13 @@ public class UserController {
 		} else {
 			System.out.println("Please enter required fields.");
 		}
+	}
+	
+	// a single collection by user
+	@RequestMapping(method = RequestMethod.GET, path="viewCollectionByUserId")
+	public List<Collection> viewCollectionByUserId(@RequestParam int userId, @RequestParam int collectionId) {
+		List<Collection> collection = userService.viewCollectionByUserId(userId, collectionId);
+		return collection;
 	}
 
 }

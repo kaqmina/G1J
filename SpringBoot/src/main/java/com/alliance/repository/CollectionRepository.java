@@ -16,8 +16,9 @@ public interface CollectionRepository extends JpaRepository<Collection, Integer>
 	public Collection save(Collection collection);
 	//public int findOneById(Integer collectionId);
 	public String findByName(String name);
-	public List<Collection> findAllByUserId(int userId);
+	public List<Collection> findAllByUserIdAndIsArchived(int userId, int isArchived);
 	
 	public Collection findByCollectionIdAndUserId(int collectionId, int userId);
+	public List<Collection> findAllByUserIdAndCollectionIdAndIsArchived(int userId, int collectionId, int isArchived);
 
 }

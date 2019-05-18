@@ -119,9 +119,9 @@ public class UserService {
 		collectionRepository.saveAndFlush(collection);
 	}
 
-	public List<Collection> viewAllCollectionByUserId(int userId) {
+	public List<Collection> viewAllCollectionsByUserId(int userId) {
 		// TODO Auto-generated method stub
-		List<Collection> collection = collectionRepository.findAllByUserId(userId);
+		List<Collection> collection = collectionRepository.findAllByUserIdAndIsArchived(userId, 0);
 		return collection;
 	}
 
@@ -136,6 +136,12 @@ public class UserService {
 			success = true;
 		}
 		return success;
+	}
+
+	public List<Collection> viewCollectionByUserId(int userId, int collectionId) {
+		// TODO Auto-generated method stub
+		List<Collection> collection = collectionRepository.findAllByUserIdAndCollectionIdAndIsArchived(userId, collectionId, 0);
+		return collection;
 	}
 	
 }
